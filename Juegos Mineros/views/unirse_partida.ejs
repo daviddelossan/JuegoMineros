@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<link rel="stylesheet" href="/stylesheets/style.css"/>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+	<div class="cabecera-tabla">
+
+		  <div class="logo"><img src="/images/Logo.png"></div>
+    <div class="logueo">
+        <% if( usuario.sexo === "Mujer") { %>
+        <span><img src="/images/usuario_femenino.png"> </span>
+        <% } %>
+        <% if( usuario.sexo === "Hombre") { %>
+         <span><img src="/images/usuario_masculino.png">  </span>
+        <% } %>
+         <div><%= usuario.nick %></div>
+  </div>
+ </div>
+	</div>
+
+	<div class="barra-navegacion">
+		<span > <a class="opcion" href="desconectar.html">DESCONECTAR</a> </span>
+		<span > <a class="opcion" href="unirse_partida.html">UNIRSE A PARTIDA</a> </span>
+		<span > <a class="opcion" href="nueva_partida.html">CREAR PARTIDA</a> </span>
+	</div>
+
+
+	<div class="contenido">
+		<div class="titulo"> Unirse a partida </div>
+		A continuación se muestra una lista con las partidas abiertas que admiten jugadores.
+
+
+
+		<form method="GET" action="/unirse_partida_get.html" class="tablaPartidas">
+                     <% if(listaPartidas == ""){ %>
+                     <div class="sinPartidas"> No hay partidas disponibles para unirse </div>
+                     <% } %>
+                     <% if(listaPartidas != ""){ %>
+                            <div class="primeraFilaPartidas">
+                                    <div class="celdaPartidas"> Nombre </div>
+                                    <div class="celdaPartidas"> Fecha </div>
+                                    <div class="celdaPartidas"> Máximo de jugadores </div>
+                                    <div class="celdaPartidas"> Jugadores apuntados </div>
+                            </div>
+
+			
+                           <% var mostrar = "" %>
+                           
+                           <%for(var i = 0; i < listaPartidas.length; i++) { %>
+                           <% if(listaPartidas[i] !== undefined) { %>
+                           
+                           <div class="filaPartidas" for="formPartidaEnviada">
+                           
+                           <% mostrar = listaPartidas[i].nombrePartida %>
+                                                    
+                           <div class="celdaPartidas"> <%= mostrar %> </div>
+                           <% mostrar = listaPartidas[i].fecha %>
+                           <div class="celdaPartidas"> <%= mostrar %> </div>
+                           <% mostrar = listaPartidas[i].maxJugadores %>
+                           <div class="celdaPartidas"> <%= mostrar %> </div>
+                           <div class="celdaPartidas" >
+                                <% if(listaPartidas[i].listaUsuarios !== null) { %>
+                                 <% var mostrar = "" %>
+                                <% for(var j = 0; j < listaPartidas[i].listaUsuarios.length; j++) { %>
+                                <% mostrar = mostrar + listaPartidas[i].listaUsuarios[j] %>
+                                <% if(j < listaPartidas[i].listaUsuarios.length - 1) mostrar = mostrar + ", " %>
+                                <% }  %>
+                                <%= mostrar %>
+                                <% } %>
+                            </div>
+                      
+                            <button class="boton_personalizado" name="partidaEnviada"  id= <%=listaPartidas[i].id%>  type="submit" value= "<%=listaPartidas[i].nombrePartida %>"> Unirse </button>
+                         </div>
+                         <% } } } %>
+		
+                         </form>
+
+
+
+
+
+</div>
+		</br>
+
+		<a class="retorno" href="welcome.html">Volver a la página de usuario</a>
+	</div>
+
+</body>
+</html>

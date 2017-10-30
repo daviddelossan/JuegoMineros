@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css"/>
+ <meta charset="utf-8"/>
+</head>
+<body>
+ <div class="cabecera-tabla">
+
+  <div class="logo"><img src="/images/Logo.png"></div>
+  <div class="logueo"> <p>No estás conectado.</p>  </div>
+ </div>
+
+ <div class="barra-navegacion">
+  <span > <a class="opcion" href="login.html">LOGIN</a> </span>
+  <span > <a class="opcion" href="registro.html">NUEVO USUARIO</a> </span>
+ </div>
+
+ <div class="contenido">
+        <div class="titulo"> Ingresar en el sistema </div>
+    <form method="GET" action="procesar_login.html">
+
+    <div class="fila">
+    <div class="celda"> <label form="formNick"> Nombre de usuario: </label></div>
+    <div class="celda"> <input type="text" class ="textbox" placeholder="Nombre de usuario" name="nick" id="formNick"> 
+    </div>
+    </div>
+
+
+    <div class="fila">
+    <div class="celda"> <label form="formPassword"> Contraseña: </label></div>
+    <div class="celda"> <input type="password" class ="textbox" placeholder="Contraseña" name="password" id="formPassword"> 
+    </div>
+    </div>
+
+   <div class="celda"></div>
+     <div class="celda"> </br> <input type="submit" class="boton_personalizado" value="Login"></div>
+                </form>
+ </div>
+
+</body>
+</html>

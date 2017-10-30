@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css"/>
+ <meta charset="utf-8"/>
+</head>
+<body>
+
+ <div class="cabecera-tabla">
+
+  <div class="logo"><img src="/images/Logo.png"></div>
+  <div class="logueo"> <p>
+                
+               No estás conectado.
+               
+
+                </p>  </div>
+ </div>
+
+ <div class="barra-navegacion">
+  <span > <a class="opcion" href="login.html">LOGIN</a> </span>
+  <span > <a class="opcion" href="registro.html">NUEVO USUARIO</a> </span>
+ </div>
+
+ <div class="contenido">
+  <div class="titulo"> Nuevo usuario </div>
+  <div> Introduce tus datos de usuario. Los campos marcados con asterisco <span class="rojo"> *</span> son obligatorios:</div> </br>
+   
+                <form method="GET" action="procesar_formulario_get.html">
+                   <div class="fila">
+                       <div class="celda"> <label for="formNick">Nombre de usuario<span class="rojo"> *</span>:</label></div>
+                       <div class="celda"> <input type="text" class ="textbox" name="nick" id="formNick" required></div>
+                    </div>
+                     <div class="fila">
+                        <div class="celda"><label for="formPass">Contraseña<span class="rojo"> *</span>:</label></div>
+                        <div class="celda"><input type="password" class ="textbox" name="password" id="formPassword" required></div>
+                    </div>
+                     <div class="fila">
+                       <div class="celda"> <label for="formNombre">Nombre completo<span class="rojo"> *</span>:</label></div>
+                       <div class="celda"> <input type="text" class ="textbox" name="nombre" id="formNombre" required></div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda">Sexo<span class="rojo"> *</span>:</div>
+                        <div class="celda"> 
+                            <input type="radio" name="sexo" value="H" id="formHombre"/>
+                            <label for="formHombre">Hombre</label>
+                            <input type="radio" name="sexo" value="M" id="formMujer"/>
+                            <label for="formMujer">Mujer</label>
+                        </div>
+                    </div>
+                    <div class="fila">
+     <div class="celda"><label for="formFoto">Foto:</label></div>
+     <div class="celda"> <input type="file" class = "normalbox" name="foto" value="Examinar" id="formFoto"> </div>
+                    </div>
+                    <div class="fila">
+     <div class="celda"><label for="formFecha">Fecha de nacimiento:</label></div>
+     <div class="celda"> <input type="date" class ="textbox" name="fecha" id="formFecha" value="DD/MM/AA" > </div>
+                    </div>
+                    <div class="fila">
+     <div class="celda"></div>
+     <div class="celda"> </br> <input type="submit" class="boton_personalizado" value="Crear cuenta de usuario"></div>
+    </div></br></br>
+                </form>
+ </div>
+
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css"/>
+ <meta charset="utf-8"/>
+</head>
+<body>
+
+ <div class="cabecera-tabla">
+
+  <div class="logo"><img src="/images/Logo.png"></div>
+    <div class="logueo">
+            <% if( usuario.sexo === "Mujer") { %>
+            <span><img src="/images/usuario_femenino.png"> </span>
+            <% } %>
+            <% if( usuario.sexo === "Hombre") { %>
+             <span><img src="/images/usuario_masculino.png">  </span>
+            <% } %>
+         <div><%= usuario.nick %></div>
+  </div>
+ </div>
+
+ <div class="barra-navegacion">
+  <span > <a class="opcion" href="desconectar.html">DESCONECTAR</a> </span>
+  <span > <a class="opcion" href="unirse_partida.html">UNIRSE A PARTIDA</a> </span>
+  <span > <a class="opcion" href="nueva_partida.html">CREAR PARTIDA</a> </span>
+
+ </div>
+
+ <div class="contenido">
+  <div class="titulo"> 
+    <% var saludo = "" %>
+    <% if(usuario.sexo == "Mujer") saludo = "¡Bienvenida, "+ usuario.nombre %> 
+    <% if(usuario.sexo == "Hombre") saludo = "¡Bienvenido, "+ usuario.nombre %>
+    <%= saludo %>
+</div>
+  <div class="titulo2"> Partidas abiertas </div>
+  Las siguientes partidas han sido creadas por ti, pero aún están a la espera de recibir más jugadores.
+  
+  
+  <form method="GET" action="/cerrar_partida_get.html" class="tablaPartidas">
+    <% if(listaPartidasActivas != "" ){ %>
+   <div class="primeraFilaPartidas">
+    <div class="celdaPartidas"> Nombre </div>
+    <div class="celdaPartidas"> Fecha </div>
+    <div class="celdaPartidas"> Número de jugadores </div>
+   </div>
+
+     <% var mostrar = "" %>
+ 
+    <% listaPartidasActivas.forEach(function(partida){ %>
+    <div class="filaPartidas">
+       
+
+   
+    <% mostrar = partida.NombrePartida %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <% mostrar = partida.Fecha %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <% mostrar = partida.NumJugadoresActual + "/" + partida.MaxJugadores %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <button class="boton_personalizado" name="partidaEnviada"  id= <%=partida.id%>  type="submit" value= <%=partida.id %>> Cerrar partida </button>
+    
+
+   </div>
+     <% }); } %>  
+
+    <%if (listaPartidasActivas == ""){ %>
+    <div class="sinPartidas"> No hay partidas disponibles de este tipo. </div>
+    <% } %>
+      
+  </form>
+
+
+  <div class="titulo2"> Partidas activas </div>
+  Haz clic en el título de la partida para ver su estado actual. </br>
+  Se marcan resaltadas las aprtidas en las que es tu turno.
+
+ 
+  <% if(listaPartidasJugando != ""){ %>
+  <form method="GET" action="/abrir_partida_get.html" class="tablaPartidas"> 
+   <div class="primeraFilaPartidas">
+    <div class="celdaPartidas"> Nombre </div>
+    <div class="celdaPartidas"> Usuario creador </div>
+    <div class="celdaPartidas"> Fecha </div>
+    <div class="celdaPartidas"> Turno </div>
+   </div>
+
+   <% var mostrar = "" %>
+    <% listaPartidasJugando.forEach(function(partida){ %>
+    <% if(partida.TurnoActual != usuario.nick) { %>
+    <div class="filaPartidas">
+    <% } %>
+     <% if(partida.TurnoActual == usuario.nick) { %>
+       <div class="filaPartidasSeleccionada">
+    <% } %>
+
+   
+    <% mostrar = partida.NombrePartida %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <% mostrar = partida.Nick %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <% mostrar = partida.Fecha%>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <% mostrar = partida.TurnoActual %>
+    <div class="celdaPartidas"> <%= mostrar %> </div>
+    <button class="boton_personalizado" name="partidaAbrir"  id= <%= partida.id%>  type="submit" value= <%= partida.NombrePartida %>> Abrir </button>
+    </div>
+     <% }); } %>  
+  <%if (listaPartidasJugando == ""){ %>
+    <div class="sinPartidas"> No hay partidas disponibles de este tipo. </div>
+    <% } %>
+     
+  </form>
+  <div class="titulo2"> Partidas terminadas </div>
+
+  <% if(listaPartidasTerminadas != "") { %>
+    
+     <div class="tablaPartidas">
+   <div class="primeraFilaPartidas">
+    <div class="celdaPartidas"> Nombre </div>
+    <div class="celdaPartidas"> Usuario creador </div>
+    <div class="celdaPartidas"> ¿Has ganado? </div>
+   </div>
+
+    <% listaPartidasTerminadas.forEach(function(partida){ %>
+    <div class="filaPartidas">
+    <div class="celdaPartidas"> <%= partida.NombrePartida %> </div>
+    <div class="celdaPartidas"> <%= partida.Nick %></div>
+    <% if(partida.equipo == partida.Ganador) { %>
+    <div class="celdaPartidas"> Si </div>
+    <% } %>
+    <%if (partida.equipo != partida.Ganador) { %>
+    <div class="celdaPartidas"> No </div>
+    <% } %>
+   </div>
+  </div>
+
+<% }) } %>
+    <%if (listaPartidasTerminadas == ""){ %>
+    <div class="sinPartidas"> No hay partidas disponibles de este tipo. </div>
+    <% } %>
+
+ </div>
+</body>
+</html>

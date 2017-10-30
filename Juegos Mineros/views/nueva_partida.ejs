@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css"/>
+ <meta charset="utf-8"/>
+</head>
+<body>
+<div class="cabecera-tabla">
+  <div class="logo"><img src="/images/Logo.png"></div>
+    <div class="logueo">
+        <% if( usuario.sexo === "Mujer") { %>
+        <span><img src="/images/usuario_femenino.png"> </span>
+        <% } %>
+        <% if( usuario.sexo === "Hombre") { %>
+         <span><img src="/images/usuario_masculino.png">  </span>
+        <% } %>
+         <div><%= usuario.nick %></div>
+  </div>
+ </div>
+	</div>
+ <div class="barra-navegacion">
+  <span > <a class="opcion" href="desconectar.html">DESCONECTAR</a> </span>
+  <span > <a class="opcion" href="unirse_partida.html">UNIRSE A PARTIDA</a> </span>
+  <span > <a class="opcion" href="nueva_partida.html">CREAR PARTIDA</a> </span>
+ </div>
+
+
+ <div class="contenido">
+  <div class="titulo"> Nueva partida </div>
+  <form method="GET" action="nueva_partida_get.html">
+   <div class="fila">
+    <div class="celda">Introduce los datos de la partida:</div>
+   </div>
+   <div class="fila">
+                            <div class="celda"><label for="formNombrePartida">Nombre:<span class="rojo"> *</span></label></div>
+    <div class="celda"> <input type="text" class ="textbox" name="nombrePartida" placeholder="Nombre de partida" id="nombrePartida" required> </div>
+   </div>
+   <div class="fila">
+                            <div class="celda"><label for="numMaxJugadores">Número máximo de jugadores (entre 3 y 7):<span class="rojo"> *</span></label></div>
+    <div class="celda"> <input type="text" class ="textbox" name="maxJugadores" placeholder="3-7" id="maxJugadores" required> </div>
+   </div>
+   <div class="fila">
+    <div class="celda"></div> 
+    <div class="celda"> </br><input class="boton_personalizado" type="submit" value="Crear partida">
+    </div>
+   </div>
+
+   <a class="retorno" href="welcome.html">Volver a la página de usuario</a>
+
+                </form>
+        </div>
+</body>
+</html>
